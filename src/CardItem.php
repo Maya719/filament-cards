@@ -2,8 +2,10 @@
 
 namespace Kanuni\FilamentCards;
 
+use BackedEnum;
 use Closure;
 use Filament\Pages\Page;
+use Illuminate\Contracts\Support\Htmlable;
 
 class CardItem
 {
@@ -109,7 +111,7 @@ class CardItem
         return $this->description ?? '';
     }
 
-    public function getIcon(): ?string
+    public function getIcon(): string | BackedEnum | Htmlable | null
     {
         $icon = ($this->icon instanceof Closure)
             ? ($this->icon)()
@@ -123,6 +125,10 @@ class CardItem
                 // Try to get icon from page's resource class
                 $icon = $resource::getNavigationIcon();
             }
+        }
+
+        if ($icon instanceof \Filament\Support\Icons\Heroicon) {
+            $icon = "heroicon-{$icon->value}";
         }
 
         return $icon;

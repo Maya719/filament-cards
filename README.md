@@ -83,9 +83,9 @@ use App\Filament\Pages\CompanySettings;
 
 class ControlPanel extends CardsPage
 {
-    protected static ?string $navigationIcon = 'heroicon-o-cog-8-tooth';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog-8-tooth';
 
-    private static function getCards(): array
+    protected static function getCards(): array
     {
         return [
             CardItem::make(CompanySettings::class)
@@ -141,7 +141,7 @@ You can add custom link as a card item by passing URL to CardItem's `make()` met
 ```php
 use Kanuni\FilamentCards\CardItem;
 
-private static function getCards(): array
+protected static function getCards(): array
 {
     return [
         CardItem::make('/path/to/docs')
@@ -159,7 +159,7 @@ Organize card items into collapsible groups by using the `group()` method on a `
 ```php
 use Kanuni\FilamentCards\CardItem;
 
-private static function getCards(): array
+protected static function getCards(): array
 {
     return [
         CardItem::make(CompanySettings::class)->group('General')
@@ -172,7 +172,7 @@ The `group()` method now also accepts a Closure as the group name argument. This
 ```php
 use Kanuni\FilamentCards\CardItem;
 
-private static function getCards(): array
+protected static function getCards(): array
 {
     return [
         CardItem::make(CompanySettings::class)
@@ -192,7 +192,7 @@ class ControlPanel extends CardsPage
 {
     protected static array $collapsedGroups = ['General', 'Advanced'];
 
-    private static function getCards(): array
+    protected static function getCards(): array
     {
         return [...];
     }
