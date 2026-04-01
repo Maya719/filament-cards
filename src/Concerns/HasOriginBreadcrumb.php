@@ -1,8 +1,8 @@
 <?php
 
-namespace Kanuni\FilamentCards\Concerns;
+namespace Maya719\FilamentCards\Concerns;
 
-use Kanuni\FilamentCards\CardItem;
+use Maya719\FilamentCards\CardItem;
 
 trait HasOriginBreadcrumb
 {

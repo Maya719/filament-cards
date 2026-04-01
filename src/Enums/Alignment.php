@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanuni\FilamentCards\Enums;
+namespace Maya719\FilamentCards\Enums;
 
 enum Alignment: string
 {

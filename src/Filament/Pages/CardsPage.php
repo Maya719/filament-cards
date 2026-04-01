@@ -1,11 +1,11 @@
 <?php
 
-namespace Kanuni\FilamentCards\Filament\Pages;
+namespace Maya719\FilamentCards\Filament\Pages;
 
 use Filament\Pages\Page;
 use Filament\Support\Enums\IconSize;
 use Illuminate\Support\Collection;
-use Kanuni\FilamentCards\Enums\Alignment;
+use Maya719\FilamentCards\Enums\Alignment;
 
 abstract class CardsPage extends Page
 {
@@ -43,7 +43,7 @@ abstract class CardsPage extends Page
 
     protected static $appendedCards = [];
 
-    public static function addCards(array|\Kanuni\FilamentCards\CardItem $cards): void
+    public static function addCards(array|\Maya719\FilamentCards\CardItem $cards): void
     {
         if (! is_array($cards)) {
             $cards = [$cards];

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanuni\FilamentCards;
+namespace Maya719\FilamentCards;
 
 use Illuminate\Support\ServiceProvider;
 
