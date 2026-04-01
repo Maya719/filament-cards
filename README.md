@@ -2,9 +2,9 @@
 
 # Filament Cards Plugin
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/kanuni/filament-cards.svg?style=flat-square)](https://packagist.org/packages/kanuni/filament-cards)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/maya719/filament-cards.svg?style=flat-square)](https://packagist.org/packages/maya719/filament-cards)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-[![Total Downloads](https://img.shields.io/packagist/dt/kanuni/filament-cards.svg?style=flat-square)](https://packagist.org/packages/kanuni/filament-cards)
+[![Total Downloads](https://img.shields.io/packagist/dt/maya719/filament-cards.svg?style=flat-square)](https://packagist.org/packages/maya719/filament-cards)
 
 - [Intro](#intro)
 - [Screenshot](#screenshot)
@@ -38,13 +38,13 @@ Default view of the Cards Page with items organized into groups and displayed as
 Install the plugin using Composer:
 
 ```bash
-composer require kanuni/filament-cards
+composer require maya719/filament-cards
 ```
 
 For **Filament v3** version install 0.x version of the package:
 
 ```bash
-composer require kanuni/filament-cards:^0.4
+composer require maya719/filament-cards:^5.0.0
 ```
 
 In an effort to align with Filament's theming methodology you will need to use a custom theme to use this plugin.
@@ -61,7 +61,7 @@ Add the plugin's views directory to your `theme.css` file:
 @source '../../../../resources/views/filament';
 
 /* Add this to your theme.css */
-@source '../../../../vendor/kanuni/filament-cards/resources/views';
+@source '../../../../vendor/maya719/filament-cards/resources/views';
 ```
 
 ### For Filament v3.x
@@ -70,7 +70,7 @@ Add the plugin's views to your `tailwind.config.js` file.
 
 ```js
 content: [
-    './vendor/kanuni/filament-cards/resources/**/*.blade.php',
+    './vendor/maya719/filament-cards/resources/**/*.blade.php',
 ]
 ```
 
@@ -82,15 +82,15 @@ npm run build
 
 ## Creating a cards page
 
-As an example, we will create a custom Filament page that will serve as an application control panel. Start by creating a Filament page at `App\Filament\Pages\ControlPanel.php`. Instead of extending the default Filament page class, this page should extend the `Kanuni\FilamentCards\Filament\Pages\CardsPage` class.
+As an example, we will create a custom Filament page that will serve as an application control panel. Start by creating a Filament page at `App\Filament\Pages\ControlPanel.php`. Instead of extending the default Filament page class, this page should extend the `Maya719\FilamentCards\Filament\Pages\CardsPage` class.
 
 Additionally, we need to define a private static method, `getCards()`, which returns an array of `CardItem` objects.
 
 ```php
 namespace App\Filament\Pages;
 
-use Kanuni\FilamentCards\Filament\Pages\CardsPage;
-use Kanuni\FilamentCards\CardItem;
+use Maya719\FilamentCards\Filament\Pages\CardsPage;
+use Maya719\FilamentCards\CardItem;
 use App\Filament\Pages\CompanySettings;
 
 class ControlPanel extends CardsPage
@@ -120,7 +120,7 @@ For example, in a service provider (like `AppServiceProvider` or a dedicated one
 
 ```php
 use App\Filament\Pages\ControlPanel;
-use Kanuni\FilamentCards\CardItem;
+use Maya719\FilamentCards\CardItem;
 use App\Filament\Pages\UserManagement;
 
 public function boot(): void
@@ -151,7 +151,7 @@ CardItem::make('/some/path')
 You can add custom link as a card item by passing URL to CardItem's `make()` method. See following example:
 
 ```php
-use Kanuni\FilamentCards\CardItem;
+use Maya719\FilamentCards\CardItem;
 
 protected static function getCards(): array
 {
@@ -169,7 +169,7 @@ protected static function getCards(): array
 Organize card items into collapsible groups by using the `group()` method on a `CardItem` object:
 
 ```php
-use Kanuni\FilamentCards\CardItem;
+use Maya719\FilamentCards\CardItem;
 
 protected static function getCards(): array
 {
@@ -182,7 +182,7 @@ protected static function getCards(): array
 The `group()` method now also accepts a Closure as the group name argument. This allows the group name to be lazily evaluated at render time:
 
 ```php
-use Kanuni\FilamentCards\CardItem;
+use Maya719\FilamentCards\CardItem;
 
 protected static function getCards(): array
 {
@@ -198,7 +198,7 @@ protected static function getCards(): array
 By default, all groups on the card's page are expanded when you open the page. However, you can specify which groups should be collapsed initially. To do this, use the `$collapsedGroups` property on the card's page instance and pass an array of group names to be collapsed.
 
 ```php
-use Kanuni\FilamentCards\Filament\Page\CardsPage;
+use Maya719\FilamentCards\Filament\Page\CardsPage;
 
 class ControlPanel extends CardsPage
 {
@@ -216,7 +216,7 @@ In this example, the "General" and "Advanced" groups will be collapsed by defaul
 If you need to conditionaly collapse some of the groups you can override `getCollapsedGroups()` on your page and return list of groups that should be collapsed, for example:
 
 ```php
-use Kanuni\FilamentCards\Filament\Page\CardsPage;
+use Maya719\FilamentCards\Filament\Page\CardsPage;
 
 class ControlPanel extends CardsPage
 {
@@ -242,7 +242,7 @@ You can control the collapse functionality for groups by overriding the protecte
 To completely disable the ability to collapse groups, set `$disableGroupsCollapse` to true:
 
 ```php
-use Kanuni\FilamentCards\Filament\Page\CardsPage;
+use Maya719\FilamentCards\Filament\Page\CardsPage;
 
 class ControlPanel extends CardsPage
 {
@@ -254,7 +254,7 @@ class ControlPanel extends CardsPage
 To disable collapsing only for certain groups, define an `array` of group names:
 
 ```php
-use Kanuni\FilamentCards\Filament\Page\CardsPage;
+use Maya719\FilamentCards\Filament\Page\CardsPage;
 
 class ControlPanel extends CardsPage
 {
@@ -286,11 +286,11 @@ You can also use absolute URL's like in the above example. Optionally you can ch
 
 ## Customizing the Display of Card Items
 
-By default, the content of each card item (title, icon, and description) is stacked and centered. Customize this alignment with the `$itemsAlignment` property on the card's page. The property must be an enum value from `Kanuni\FilamentCards\Enums\Alignment`. Possible values are `Alignment::Start`, `Alignment::Center` and `Alignment::End`.
+By default, the content of each card item (title, icon, and description) is stacked and centered. Customize this alignment with the `$itemsAlignment` property on the card's page. The property must be an enum value from `Maya719\FilamentCards\Enums\Alignment`. Possible values are `Alignment::Start`, `Alignment::Center` and `Alignment::End`.
 
 ```php
-use Kanuni\FilamentCards\Filament\Page\CardsPage;
-use Kanuni\FilamentCards\Enums\Alignment;
+use Maya719\FilamentCards\Filament\Page\CardsPage;
+use Maya719\FilamentCards\Enums\Alignment;
 
 class ControlPanel extends CardsPage
 {
@@ -306,7 +306,7 @@ class ControlPanel extends CardsPage
 You can customize the icon size by overriding `$iconSize` property on the card's page. This property must be  value from the `Filament\Support\Enums\IconSize` enum. There are three sizes `IconSize::Small`, `IconSize::Medium` and `IconSize::Large`. Default size is medium.
 
 ```php
-use Kanuni\FilamentCards\Filament\Page\CardsPage;
+use Maya719\FilamentCards\Filament\Page\CardsPage;
 use Filament\Support\Enums\IconSize;
 
 class ControlPanel extends CardsPage
@@ -321,7 +321,7 @@ class ControlPanel extends CardsPage
 To display an item's icon inline with its title, override the `$iconInlined` property on the card's page.
 
 ```php
-use Kanuni\FilamentCards\Filament\Page\CardsPage;
+use Maya719\FilamentCards\Filament\Page\CardsPage;
 use Filament\Support\Enums\IconSize;
 
 class ControlPanel extends CardsPage
@@ -337,13 +337,13 @@ In the screenshot below, the icons are aligned with the title and set to a small
 
 ## Configuring Breadcrumbs for Pages Opened from the Cards Page
 
-By default, pages opened from the cards page will display the standard breadcrumbs. If you want to customize the breadcrumbs for pages accessed through the cards page, you can add the `Kanuni\FilamentCards\Concerns\HasOriginBreadcrumb` trait in your page class.
+By default, pages opened from the cards page will display the standard breadcrumbs. If you want to customize the breadcrumbs for pages accessed through the cards page, you can add the `Maya719\FilamentCards\Concerns\HasOriginBreadcrumb` trait in your page class.
 
 ```php
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
-use Kanuni\FilamentCards\Concerns\HasOriginBreadcrumb;
+use Maya719\FilamentCards\Concerns\HasOriginBreadcrumb;
 
 class CompanySettings extends Page
 {
